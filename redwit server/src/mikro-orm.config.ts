@@ -5,6 +5,7 @@ import path from "path";
 import { User } from "./entities/User";
 
 
+
 export default{
     migrations: {
       path: path.join(__dirname, "./migrations"),
@@ -15,6 +16,6 @@ export default{
         user: 'elijah',
         password:'elijah',
         type: 'postgresql',
-          debug: !__prod__,
+        debug: !__prod__,
+        allowGlobalContext: true
     } as Parameters<typeof MikroORM.init>[0];
-

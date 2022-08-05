@@ -17,12 +17,6 @@ let User = class User {
         this.createdAt = new Date();
         this.updatedAt = new Date();
     }
-    static findOne(userIdNum) {
-        throw new Error("Method not implemented.");
-    }
-    static update(arg0, arg1) {
-        throw new Error("Method not implemented.");
-    }
 };
 __decorate([
     (0, type_graphql_1.Field)(),

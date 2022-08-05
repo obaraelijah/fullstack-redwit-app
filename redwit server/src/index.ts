@@ -5,9 +5,9 @@ import microConfig from './mikro-orm.config';
 import express from 'express';
 import {ApolloServer} from 'apollo-server-express'
 import {buildSchema} from 'type-graphql'
-import { HelloResolver } from './resolvers/hello';
-import { PostResolver } from './resolvers/post';
-import { UserResolver } from "./resolvers/user";
+import { HelloResolver } from "./resolvers/sam"
+import { PostResolver } from "./resolvers/Post";
+import { UserResolver } from "./resolvers/User";
 import { Mycontext } from "./types";
 import session from "express-session";
 import * as redis from 'redis';
@@ -66,6 +66,8 @@ const main = async () => {
     await apolloserver.start();
     apolloserver.applyMiddleware({ app, 
       cors: false, 
+      path: "/api",
+
     });
 
     app.listen(4000, () => {
@@ -77,5 +79,3 @@ const main = async () => {
 main().catch((err) => {
     console.error(err)
 });
-
-

@@ -42,9 +42,9 @@ const mikro_orm_config_1 = __importDefault(require("./mikro-orm.config"));
 const express_1 = __importDefault(require("express"));
 const apollo_server_express_1 = require("apollo-server-express");
 const type_graphql_1 = require("type-graphql");
-const hello_1 = require("./resolvers/hello");
-const post_1 = require("./resolvers/post");
-const user_1 = require("./resolvers/user");
+const sam_1 = require("./resolvers/sam");
+const Post_1 = require("./resolvers/Post");
+const User_1 = require("./resolvers/User");
 const express_session_1 = __importDefault(require("express-session"));
 const redis = __importStar(require("redis"));
 const cors_1 = __importDefault(require("cors"));
@@ -76,7 +76,7 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
     }));
     const apolloserver = new apollo_server_express_1.ApolloServer({
         schema: yield (0, type_graphql_1.buildSchema)({
-            resolvers: [hello_1.HelloResolver, post_1.PostResolver, user_1.UserResolver],
+            resolvers: [sam_1.HelloResolver, Post_1.PostResolver, User_1.UserResolver],
             validate: false
         }),
         context: ({ req, res }) => ({ em: orm.em, req, res })
@@ -84,6 +84,7 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
     yield apolloserver.start();
     apolloserver.applyMiddleware({ app,
         cors: false,
+        path: "/api",
     });
     app.listen(4000, () => {
         console.log('server started on localhost:4000');
